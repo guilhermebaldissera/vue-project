@@ -1,0 +1,77 @@
+{
+  "desserts": [
+    {
+      "id": 1,
+      "name": "brigadeiro",
+      "calories": "321424"
+    },
+    {
+      "id": 2,
+      "name": "tiramissu",
+      "calories": "322323"
+    },
+    {
+      "name": "carrot cake",
+      "calories": "321424",
+      "id": 3
+    },
+    {
+      "name": "chocolate bar",
+      "calories": "100",
+      "id": 4
+    },
+    {
+      "name": "candy",
+      "calories": "200",
+      "id": 5
+    }
+  ],
+  "songs": [
+    {
+      "id": 1,
+      "name": "Best of you",
+      "artist": "Foo fighter",
+      "album": "In your honor"
+    },
+    {
+      "id": 2,
+      "name": "Pretender",
+      "artist": "Foo fighter",
+      "album": "In your honor"
+    },
+    {
+      "id": 3,
+      "name": "Walk",
+      "artist": "Foo fighter",
+      "album": "In your honor"
+    },
+    {
+      "id": 4,
+      "name": "These days",
+      "artist": "Foo fighter",
+      "album": "In your honor"
+    },
+    {
+      "id": 5,
+      "name": "Run",
+      "artist": "Foo fighter",
+      "album": "In your honor"
+    },
+    {
+      "name": "Perfect",
+      "artist": "Ed Sheran",
+      "album": "Divide",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
