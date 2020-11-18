@@ -12,8 +12,10 @@ export default new Vuex.Store({
       if(state.songs.length){
         return state.songs.map(songs=> {
           const objtWithNoId = {...songs}
+          const obj = {id: objtWithNoId.id}
           delete objtWithNoId.id
-          return objtWithNoId
+          obj.body = objtWithNoId
+          return obj
         })
       }
       return []
@@ -25,6 +27,10 @@ export default new Vuex.Store({
     },
     initializeSongs (state, payload){
       state.songs = payload
+    },
+    deleteElem(state, payload) {
+      const index = state.songs.findIndex(song => song.id == payload)
+      state.songs.splice(index, 1)
     }
   },
   actions: {

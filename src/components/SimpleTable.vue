@@ -6,14 +6,13 @@
           <th v-for="item in headers" :key="item" class="text-left">
             {{item}}
           </th>
-          <!-- <th class="text-left">
-            Calories
-          </th> -->
+          <th class="text-left"></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in content" :key="item.name">  
-          <td v-for="value in item" :key='value'>{{ value }}</td>
+        <tr v-for="item in content" :key="item.id">  
+          <td v-for="value in item.body" :key='value'>{{ value }}</td>
+          <td><v-btn @click="deleteItem(item.id)" color="error">Delete</v-btn></td>
         </tr>
       </tbody>
     </template>
@@ -31,8 +30,12 @@ export default {
     content: {
       type: Array,
       required: true
+    },
+    deleteItem: {
+      type: Function,
+      required: true
     }
-  }
+  },
 //   props: ['headers', 'content']
 }
 </script>

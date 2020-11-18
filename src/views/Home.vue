@@ -3,7 +3,7 @@
     <router-link to="/add" tag='h1'>
       <a>Add new record</a>
     </router-link>
-    <SimpleTable :headers="headers" :content="getAllSongs" />
+    <SimpleTable :headers="headers" :content="getAllSongs" :deleteItem="deleteElement" />
   </div>
 </template>
 
@@ -31,6 +31,13 @@ export default {
     this.$http.get('songs').then(resp=> {
       this.$store.commit('initializeSongs', resp.data)
     })
+  },
+  methods: {
+    deleteElement(id){
+      this.$http.delete(`songs/${id}`).then(resp=> {
+        this.$store.commit('deleteElem', id)
+      }).catch(e => console.log(e))
+    }
   }
 }
 </script>
