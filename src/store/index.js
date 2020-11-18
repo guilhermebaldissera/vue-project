@@ -31,6 +31,11 @@ export default new Vuex.Store({
     deleteElem(state, payload) {
       const index = state.songs.findIndex(song => song.id == payload)
       state.songs.splice(index, 1)
+    },
+    updateElem(state, payload){
+      const index = state.songs.findIndex(song => song.id == payload.id)
+      state.songs.splice(index, 1)
+      state.songs.push(payload)
     }
   },
   actions: {

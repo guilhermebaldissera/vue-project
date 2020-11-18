@@ -7,12 +7,14 @@
             {{item}}
           </th>
           <th class="text-left"></th>
+          <th class="text-left"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in content" :key="item.id">  
           <td v-for="value in item.body" :key='value'>{{ value }}</td>
           <td><v-btn @click="deleteItem(item.id)" color="error">Delete</v-btn></td>
+          <td><v-btn @click="updateItem(item)" color="warning" dark>Update</v-btn></td>
         </tr>
       </tbody>
     </template>
@@ -37,6 +39,11 @@ export default {
     }
   },
 //   props: ['headers', 'content']
+  methods: {
+    updateItem(item){
+      this.$emit("updateElem", item)
+    }
+  }
 }
 </script>
 

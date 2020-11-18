@@ -1,9 +1,6 @@
 <template>
   <div>
-    <router-link to="/add" tag='h1'>
-      <a>Add new record</a>
-    </router-link>
-    <SimpleTable :headers="headers" :content="getAllSongs" :deleteItem="deleteElement" />
+    <SimpleTable :headers="headers" :content="getAllSongs" :deleteItem="deleteElement" @updateElem="updateElem" />
   </div>
 </template>
 
@@ -27,7 +24,6 @@ export default {
     }
   },
   created(){
-    console.log("home created")
     this.$http.get('songs').then(resp=> {
       this.$store.commit('initializeSongs', resp.data)
     })
@@ -37,6 +33,10 @@ export default {
       this.$http.delete(`songs/${id}`).then(resp=> {
         this.$store.commit('deleteElem', id)
       }).catch(e => console.log(e))
+    },
+    updateElem(event){
+      this.$router.push({path: '/song/edit', query: { id: event.id, name: event.body.name,
+       artist: event.body.artist, album: event.body.album}})
     }
   }
 }
