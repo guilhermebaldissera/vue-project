@@ -1,6 +1,13 @@
 # vue-project
 
-## Obs
+## Observation
+It's necessary to execute the back-end first, it's just a json-serve.
+
+## Run json-serve
+```
+npm install -g json-server
+json-server --watch db.json
+```
 
 ## Project setup
 ```
