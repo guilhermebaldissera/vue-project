@@ -1,39 +1,38 @@
 <template>
   <div>
     <v-alert dense text type="success" dismissible v-if="feedback">{{feedbackMsg}}</v-alert>
-    <v-form>
+    <v-form ref="form">
       <v-container>
-        <v-row>
-          <v-col
-            cols="12"
-            sm="6"
-            md="3"
-          >
-            <v-text-field label="Name" v-model="song.name"></v-text-field>
-          </v-col>
+        <v-text-field
+          v-model="song.name"
+          :rules="nameRules"
+          label="Name"
+          class="labelo"
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="song.artist"
+          :rules="artistRules"
+          label="Artist"
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="song.album"
+          :rules="albumRules"
+          label="Album"
+          required
+        ></v-text-field>
 
-          <v-col
-            cols="12"
-            sm="6"
-            md="3"
-          >
-            <v-text-field label="Artist" v-model="song.artist"> </v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            sm="6"
-            md="3"
-          >
-            <v-text-field label="Album" v-model="song.album"> </v-text-field>
-          </v-col>
-          <v-col
-            cols="12"
-            sm="6"
-            md="3"
-          >
-            <v-btn @click.prevent="addOrUpdate()" depressed>{{editMode ? "Update" : "Add"}}</v-btn>
-          </v-col>
-        </v-row>
+        <v-btn
+          color="#a0e025"
+          style="font-weight: bold;"
+          @click.prevent="addOrUpdate()"
+          depressed
+        >
+          {{ editMode ? "Update" : "Add" }}
+        </v-btn>
+
+        <v-btn color="#a0e025" style="font-weight: bold;" @click="reset"> Reset Form </v-btn>
       </v-container>
     </v-form>
   </div>
@@ -53,11 +52,32 @@ export default {
       },
       editMode: false,
       feedback: false,
-      feedbackMsg: 'Element Insert Succefully'
+      feedbackMsg: 'Element Insert Succefully',
+      nameRules: [
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length <= 20) || "Name must be less than 20 characters",
+      ],
+      artistRules: [
+        (v) => !!v || "Artist is required"
+      ],
+      albumRules: [
+        (v) => !!v || "Album is required",
+        (v) => (v && v.length <= 20) || "Album must be less than 20 characters",
+      ],
+    }
+  },
+  computed: {
+    ButtonReadyToGo(){
+      return !(this.song.name && this.song.artist && this.song.album)
     }
   },
   methods: {
+    reset() {
+      this.$refs.form.reset();
+    },
     addOrUpdate () {
+      if(!this.$refs.form.validate())
+        return
       if(!this.editMode){
         this.$http.post('songs', {... this.song})
         .then(resp=> {
@@ -86,14 +106,14 @@ export default {
     cleanAndFeedback(msg){
       this.feedbackMsg = msg
       this.feedback = !this.editMode ? true : false
-      this.clean()
+      this.reset()
       setInterval(_ => this.feedback = false, 2000)
     },
     verifyComponentMode(){
       // this.$route.params.action or user props
       if(this.action == "add"){
       this.editMode = false
-      this.clean()
+      this.reset()
       }else if(this.action == "edit"){
         this.editMode = true
         this.id = this.$route.query.id
@@ -110,6 +130,38 @@ export default {
   },
   activated(){
     this.verifyComponentMode()
+  },
+  beforeRouteEnter(to, from, next){
+    console.log(`local route, before interceptor, from: ${from} to ${to}`)
+    next()
+    //atributes are not reacheable here, to access atributes use callback -> next(vm -> vm.attr)
+  },
+  beforeRouteLeave(to, from, next){
+    // Could verify if the user really wants to leave, usuful in forms
+    console.log(`local route, leave interceptor, from: ${from} to ${to}`)
+    // if(confirm("are you sure")){
+    //   next()
+    // }
+    // else{
+    //   next(false)
+    // }
+    next()
+    
   }
 }
 </script>
+
+<style>
+.v-btn:not(.v-btn--round).v-size--default {
+  margin: 30px 50px 0 0;
+}
+.v-label.theme--light {
+  color: #ffffff;
+}
+.v-messages__message {
+  color: #ffffff;
+}
+.v-text-field.v-input--has-state > .v-input_control > .v-input_slot:before {
+  border-color: #ffffff;
+}
+</style>

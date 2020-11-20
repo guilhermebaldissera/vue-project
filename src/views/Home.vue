@@ -20,7 +20,7 @@ export default {
   },
   data () {
     return {
-      headers: ['name', 'artist', 'album']
+      headers: ['NAME', 'ARTIST', 'ALBUM']
     }
   },
   created(){
