@@ -66,11 +66,6 @@ export default {
       ],
     }
   },
-  computed: {
-    ButtonReadyToGo(){
-      return !(this.song.name && this.song.artist && this.song.album)
-    }
-  },
   methods: {
     reset() {
       this.$refs.form.reset();
@@ -97,11 +92,6 @@ export default {
           this.$router.push('/')
         })
       }
-    },
-    clean(){
-      this.song.name = ''
-      this.song.artist= ''
-      this.song.album = ''
     },
     cleanAndFeedback(msg){
       this.feedbackMsg = msg

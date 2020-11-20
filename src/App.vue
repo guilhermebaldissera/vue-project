@@ -38,11 +38,6 @@ export default {
       tab: null
     }
   }
-  // watch:{
-  //   tab: (val)=>{
-  //     console.log(val)
-  //   }
-  // }
 }
 </script>
 
