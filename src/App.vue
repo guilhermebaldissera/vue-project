@@ -1,29 +1,15 @@
 <template>
   <v-theme-provider>
-  <v-card style="
-        background: #696969;
-        height: 100vh;
-        width: 100vw;
-        font-family: 'Nunito', sans-serif;
-      ">
+  <v-card class="card">
     <v-app-bar
         color="#2A9D8F"
         shrink-on-scroll
         prominent
-        style="display: flex; justify-content: center"
+        class="appBar"
       >
-        <div
-          style="
-            width: 80vw;
-            padding: 12px;
-            margin-right: auto;
-            margin-left: auto;
-            display: flex;
-          "
-        >
-          <v-toolbar-title style="width: 100%;">Enjoy your favorites songs...</v-toolbar-title>
-
-          <v-tabs v-model="tab" style="background-color: transparent;display: flex;flex-flow: row-reverse;">
+        <div class="wrapper">
+          <v-toolbar-title class="title">Enjoy your favorites songs...</v-toolbar-title>
+          <v-tabs v-model="tab" class="tabs">
             <v-tab to="/">Home</v-tab>
             <v-tab to="/song/add">Add</v-tab>
           </v-tabs>
@@ -33,8 +19,8 @@
       <keep-alive>
         <router-view />
       </keep-alive>
-      <v-footer absolute style="background: #2a9d8f;display: flex;flex-flow: column;">
-        <v-col style="font-family: Nunito, sans-serif;font-size: 20px;text-align: left;width: 80vw;margin: auto;"> Music is art! </v-col>
+      <v-footer absolute class="footer">
+        <v-col class="col"> Music is art! </v-col>
       </v-footer>
     </v-container>
   </v-card>
@@ -65,5 +51,42 @@ export default {
     background-color: transparent;
     display: flex;
     flex-flow: row-reverse;
-}
+  }
+  .tabs{
+    background-color: transparent;
+    display: flex;
+    flex-flow: row-reverse;
+  }
+  .card{
+    background: #696969 !important;
+    height: 100vh ;
+    width: 100vw ;
+    font-family: 'Nunito', sans-serif;
+  }
+  .appBar{
+    display: flex;
+    justify-content: center
+  }
+  .wrapper{
+    width: 80vw !important;
+    padding: 12px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    display: flex !important;
+  }
+  .footer{
+    background: #2a9d8f !important;
+    display: flex;
+    flex-flow: column;
+  }
+  .col{
+    font-family: Nunito, sans-serif;
+    font-size: 20px;
+    text-align: left;
+    width: 80vw;
+    margin: auto;
+  }
+  .title{
+    width: 100%;
+  }
 </style>
