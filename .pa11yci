@@ -1,0 +1,31 @@
+{
+  "defaults": {
+    "standart": "WCAG2A",
+    "level": "error",
+    "timeout": 10000,
+    "ignore": [
+      "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl"
+    ],
+    "rule": [
+      "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl"
+    ]
+  },
+  "urls": [
+    {
+      "url": "http://localhost:8080/",
+      "actions": [
+        "click element #addTab"
+      ]
+    },
+    {
+      "url": "http://localhost:8080/song/add",
+      "actions": [
+        "click element #homeTab"
+      ],
+      "screenCapture": "add-screen-capture.png"
+    },
+    
+    "http://localhost:8080/song/edit/1"
+
+  ]
+}

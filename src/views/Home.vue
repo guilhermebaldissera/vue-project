@@ -1,6 +1,7 @@
 <template>
   <div>
     <SimpleTable :headers="headers" :content="getAllSongs" :deleteItem="deleteElement" @updateElem="updateElem" />
+    <!-- <slot/> mention slot --> 
   </div>
 </template>
 
@@ -38,7 +39,15 @@ export default {
       this.$router.push({path: '/song/edit', query: { id: event.id, name: event.body.name,
        artist: event.body.artist, album: event.body.album}})
     }
-  }
+  },
+  // directives: {
+  //   when: {
+  //     bind(el, binding, vnode){
+  //       const arg = binding.arg
+  //       const fn = binding.value
+  //     }
+  //   }
+  // }
 }
 </script>
 

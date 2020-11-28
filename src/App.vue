@@ -10,8 +10,8 @@
         <div class="wrapper">
           <v-toolbar-title class="title">Enjoy your favorites songs...</v-toolbar-title>
           <v-tabs v-model="tab" class="tabs">
-            <v-tab to="/">Home</v-tab>
-            <v-tab to="/song/add">Add</v-tab>
+            <v-tab id="homeTab" to="/">Home</v-tab>
+            <v-tab id="addTab" to="/song/add">Add</v-tab>
           </v-tabs>
         </div>
       </v-app-bar>
