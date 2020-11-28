@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test-pa11y": "./node_modules/.bin/pa11y-ci"
+    "test-pa11y": "./node_modules/.bin/pa11y-ci",
+    "json-serve": "./node_modules/.bin/json-server --watch db.json"
   },
   "dependencies": {
     "axios": "^0.21.0",
